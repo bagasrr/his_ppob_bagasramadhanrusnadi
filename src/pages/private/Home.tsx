@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <PageLayout>
+    <PageLayout pageTitle={null}>
       <Header profileImageUrl={data.profile.profile_image} userName={`${data.profile.first_name} ${data.profile.last_name}`} balance={data.balance.balance} />
       <ServicesGrid services={servicesBannersData.services} />
       <PromoSection banners={servicesBannersData.banners} />
