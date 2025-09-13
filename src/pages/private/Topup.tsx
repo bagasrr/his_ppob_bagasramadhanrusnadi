@@ -10,6 +10,7 @@ import Header from "../../components/Header";
 import InputField from "../../components/InputField";
 import { Button } from "../../components/Button";
 import { TopUpBalance } from "../../api/Transaction";
+import LoadingModalBox from "../../components/LoadingModalBox";
 
 type TopupFormInputs = z.infer<typeof topupSchema>;
 
@@ -51,7 +52,7 @@ const TopupPage: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <LoadingModalBox children="Memuat data..." />;
   }
   if (error || !profileData) {
     return <div className="flex justify-center items-center h-screen text-red-500">Error: {error || "Data tidak tersedia"}</div>;

@@ -12,6 +12,7 @@ import PageLayout from "../../layouts/PageLayout";
 import ProfileAvatar from "../../components/ProfileAvatar";
 import InputField from "../../components/InputField";
 import { Button } from "../../components/Button";
+import LoadingModalBox from "../../components/LoadingModalBox";
 
 type ProfileFormInputs = z.infer<typeof profileSchema>;
 
@@ -23,6 +24,7 @@ const ProfilePage: React.FC = () => {
     last_name: "",
     profile_image: "",
   });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token") || "";
 
@@ -39,12 +41,17 @@ const ProfilePage: React.FC = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        setLoading(true);
         const { data } = await GetProfile(token);
         setProfile(data);
+
         reset(data);
       } catch (error) {
+        setLoading(false);
         console.error("Gagal memuat profil:", error);
         toast.error("Gagal memuat profil.");
+      } finally {
+        setLoading(false);
       }
     };
     if (token) {
@@ -94,6 +101,10 @@ const ProfilePage: React.FC = () => {
     setIsEditing(false);
     reset(profile);
   };
+
+  if (loading) {
+    return <LoadingModalBox children="Memuat data..." />;
+  }
 
   return (
     <PageLayout pageTitle="Profile">

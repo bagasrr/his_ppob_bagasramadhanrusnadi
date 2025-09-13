@@ -4,6 +4,7 @@ import PromoSection from "../../components/PromoSection";
 import PageLayout from "../../layouts/PageLayout";
 import { useProfileDetails } from "../../hooks/useProfileDetails";
 import { useGetBannerServices } from "../../hooks/useGetBannerServices";
+import LoadingModalBox from "../../components/LoadingModalBox";
 
 const HomePage: React.FC = () => {
   const token = localStorage.getItem("token");
@@ -12,7 +13,7 @@ const HomePage: React.FC = () => {
   const { data: servicesBannersData, loading: servicesBannersLoading, error: servicesBannersError } = useGetBannerServices(token || "");
 
   if (loading || servicesBannersLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <LoadingModalBox children="Memuat data..." />;
   }
   if (error || servicesBannersError || !servicesBannersData || !data) {
     return <div className="flex justify-center items-center h-screen text-red-500">Error: {error || "Data tidak tersedia"}</div>;

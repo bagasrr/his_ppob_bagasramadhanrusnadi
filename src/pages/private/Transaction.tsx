@@ -10,6 +10,7 @@ import { Button } from "../../components/Button";
 import { MakeTransaction } from "../../api/Transaction";
 import TransactionHistory from "../../components/TransactionHistory";
 import { formatCurrency } from "../../utils/Formatting";
+import LoadingModalBox from "../../components/LoadingModalBox";
 
 const TransactionPage: React.FC = () => {
   const { serviceCode } = useParams<{ serviceCode: string }>();
@@ -56,7 +57,7 @@ const TransactionPage: React.FC = () => {
   const isLoading = profileLoading || servicesLoading;
 
   if (isLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <LoadingModalBox children="Loading..." />;
   }
   if (profileError || servicesError || !profileData) {
     return <div className="flex justify-center items-center h-screen text-red-500">{profileError || servicesError || "Data tidak tersedia"}</div>;
