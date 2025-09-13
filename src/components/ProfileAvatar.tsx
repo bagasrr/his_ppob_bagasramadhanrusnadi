@@ -23,7 +23,11 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ profileImageUrl, onImageS
 
   return (
     <div className="relative w-32 h-32 mx-auto cursor-pointer group" onClick={handleAvatarClick}>
-      <img src={profileImageUrl || "/Website Assets/Profile Photo.png"} alt="Profile" className="w-40  rounded-full mb-2 border-2 border-gray-200" />
+      {profileImageUrl === "https://minio.nutech-integrasi.com/take-home-test/null" ? (
+        <img src="/Website Assets/Profile Photo.png" alt="Default Profile" className="w-40  rounded-full mb-2 border-2 border-gray-200" />
+      ) : (
+        <img src={profileImageUrl} alt="Profile" className="w-40  rounded-full mb-2 border-2 border-gray-200" />
+      )}
 
       <div className="absolute inset-0 bg-slate/90 bg-opacity-0 group-hover:bg-opacity-40 rounded-full flex items-center justify-center transition-opacity duration-300">
         <Camera className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

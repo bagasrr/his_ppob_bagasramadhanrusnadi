@@ -2,7 +2,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AtSign, Lock, User } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { registrationSchema } from "../zod/validation";
 import { RegisterAccount } from "../api/Account";
@@ -12,6 +12,7 @@ import InputField from "../components/InputField";
 type RegisterFormInputs = z.infer<typeof registrationSchema>;
 
 const RegisterPage: React.FC = () => {
+  const navigate = useNavigate(); // Hook untuk navigasi setelah registrasi
   const {
     register,
     handleSubmit,
@@ -28,6 +29,7 @@ const RegisterPage: React.FC = () => {
       loading: "Memproses registrasi...",
       success: (res) => {
         reset();
+        navigate("/login");
         return res.message || "Registrasi berhasil!";
       },
       error: (err) => {
