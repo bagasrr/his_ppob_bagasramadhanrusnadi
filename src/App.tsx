@@ -8,8 +8,9 @@ import ProfilePage from "./pages/private/Profile";
 import { Toaster } from "react-hot-toast";
 
 const useAuth = () => {
-  const isAuthenticated = true;
-  return isAuthenticated;
+  const token = localStorage.getItem("token");
+
+  return !!token;
 };
 
 const PrivateRoute: React.FC = () => {
