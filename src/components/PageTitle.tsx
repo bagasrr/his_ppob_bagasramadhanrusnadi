@@ -2,10 +2,10 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 interface PageTitleProps {
-  title: string;
+  title: string | null;
 }
 
-const APP_NAME = "HIS PPOB";
+const APP_NAME = "Web SIMS PPOB - Bagas Ramadhan Rusnadi";
 
 const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
   // Jika judul diberikan, formatnya "Judul Halaman | Nama Aplikasi"

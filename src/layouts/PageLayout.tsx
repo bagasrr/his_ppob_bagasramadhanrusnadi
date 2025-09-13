@@ -4,7 +4,7 @@ import PageTitle from "../components/PageTitle";
 
 interface PageLayoutProps {
   children: React.ReactNode;
-  pageTitle: string;
+  pageTitle: string | null;
 }
 const PageLayout: React.FC<PageLayoutProps> = ({ children, pageTitle }) => {
   const token = localStorage.getItem("token") || "";
