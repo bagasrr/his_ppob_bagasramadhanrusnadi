@@ -17,8 +17,6 @@ const quickNominals = [10000, 20000, 50000, 100000, 250000, 500000];
 
 const TopupPage: React.FC = () => {
   const token = localStorage.getItem("token") || "";
-  console.log(token);
-  // Menggunakan custom hook Anda untuk mendapatkan data profil & saldo
   const { data: profileData, loading, error, refetchProfile } = useProfileDetails(token);
 
   const {

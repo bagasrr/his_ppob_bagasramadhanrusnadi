@@ -4,12 +4,12 @@ import PromoSection from "../../components/PromoSection";
 import PageLayout from "../../layouts/PageLayout";
 import { useProfileDetails } from "../../hooks/useProfileDetails";
 import { useGetBannerServices } from "../../hooks/useGetBannerServices";
-import { Token } from "../../utils/Token";
 
 const HomePage: React.FC = () => {
-  const { data, loading, error } = useProfileDetails(Token || "");
+  const token = localStorage.getItem("token");
+  const { data, loading, error } = useProfileDetails(token || "");
   console.log("data : ", data);
-  const { data: servicesBannersData, loading: servicesBannersLoading, error: servicesBannersError } = useGetBannerServices(Token || "");
+  const { data: servicesBannersData, loading: servicesBannersLoading, error: servicesBannersError } = useGetBannerServices(token || "");
 
   if (loading || servicesBannersLoading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
